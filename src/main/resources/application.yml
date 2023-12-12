@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/camera_web_seller
+    username: root
+    password: aogie2003
+  jpa:
+    properties:
+      hibernate:
+        id:
+          new_generator_mappings: true
+    hibernate:
+      ddl-auto: create-drop
