@@ -1,5 +1,7 @@
 package pm02.cameraWebSeller.data_access.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,10 +26,12 @@ public class OrderProduct {
     private String orderId;
 
     @ManyToOne
+    @JsonBackReference("product-order-products")
     @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
+    @JsonBackReference("order-products")
     @JoinColumn(name = "order_id")
     private Order order;
 

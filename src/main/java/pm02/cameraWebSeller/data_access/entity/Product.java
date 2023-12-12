@@ -1,5 +1,7 @@
 package pm02.cameraWebSeller.data_access.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -32,8 +34,10 @@ public class Product {
     private Date dateCreate = new Date();
 
     @OneToMany(mappedBy = "product")
+    @JsonManagedReference("product-titles")
     private List<Title> titles;
 
+    @JsonManagedReference("product-order-products")
     @OneToMany(mappedBy="product")
     private List<OrderProduct> orderProducts;
 }

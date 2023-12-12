@@ -2,10 +2,14 @@ package pm02.cameraWebSeller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import pm02.cameraWebSeller.data_access.entity.Order;
+import pm02.cameraWebSeller.reponse.ResponseObject;
 import pm02.cameraWebSeller.service.interfaces.AdminOrderService;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/admin/order")
+@RequestMapping("/admin/orders")
 public class AdminOrderController {
     private final AdminOrderService order;
 
@@ -15,21 +19,25 @@ public class AdminOrderController {
     }
 
     @GetMapping("")
-    public void getOrders() {
-        order.getOrders();
+    public ResponseObject getOrders() {
+        List<Order> orders = order.getOrders();
+        return new ResponseObject("OK", "Successfully retrieved all orders", orders);
     }
 
     @GetMapping("/")
-    public void getOrderById(@RequestParam String id) {
-        order.getOrderById(id);
+    public ResponseObject getOrderById(@RequestParam String id) {
+        Order order = this.order.getOrderById(id);
+        return new ResponseObject("OK", "Successfully retrieved order by ID = " + id, order);
     }
 
-    @PutMapping("/")
-    public void confirmOrder(@RequestParam String id) {
+    @PostMapping("/confirm")
+    public ResponseObject confirmOrder(@RequestParam String id) {
         order.confirmOrder(id);
+        return new ResponseObject("OK", "Confirm order successfully", null);
     }
-    @PutMapping("/")
-    public void cancelOrder(@RequestParam String id) {
+    @PostMapping("/cancel")
+    public ResponseObject cancelOrder(@RequestParam String id) {
         order.cancelOrder(id);
+        return new ResponseObject("OK", "Cancel order successfully", null);
     }
 }

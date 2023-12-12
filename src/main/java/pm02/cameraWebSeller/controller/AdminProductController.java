@@ -1,15 +1,17 @@
 package pm02.cameraWebSeller.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pm02.cameraWebSeller.data_access.entity.Product;
 import pm02.cameraWebSeller.data_access.entity.Title;
+import pm02.cameraWebSeller.reponse.ResponseObject;
 import pm02.cameraWebSeller.service.interfaces.AdminProductService;
 
 import java.util.List;
 
 @RestController
-@RequestMapping("/admin/product")
+@RequestMapping("/admin/products")
 public class AdminProductController {
     private final AdminProductService product;
 
@@ -18,27 +20,38 @@ public class AdminProductController {
         this.product = product;
     }
     @GetMapping("")
-    public void getProducts() {
-        product.getProducts();
+    public ResponseObject getProducts() {
+        List<Product> products = product.getProducts();
+        return new ResponseObject("OK", "Successfully retrieved all products", products);
     }
     @GetMapping("/")
-    public void getProductById(@RequestParam String id) {
-        product.getProductById(id);
+    public ResponseObject getProductById(@RequestParam String id) {
+        Product product = this.product.getProductById(id);
+        return new ResponseObject("OK", "Successfully retrieved product by ID = " + id, product);
     }
 
     @PostMapping("")
-    public Product createProduct(@RequestBody Product newProduct, @RequestParam List<Title> titles) {
-        return product.createProduct(newProduct, titles);
-    }
-    @PutMapping("/{id}")
-    public Product updateProduct(@PathVariable String id,
-                                                 @RequestBody Product updatedProduct,
-                                                 @RequestBody List<Title> updatedTitles) {
-        return product.updateProduct(id, updatedProduct, updatedTitles);
+    public ResponseEntity<ResponseObject> createProduct(@RequestBody ProductRequest productRequest) {
+        Product createdProduct = this.product.createProduct(
+                productRequest.getProduct(),
+                productRequest.getTitles()
+        );
+        return ResponseEntity.ok(
+                new ResponseObject("CREATED", "Create product successfully", createdProduct)
+        );
     }
 
-    @DeleteMapping("/{id}")
-    public void deleteProduct(@PathVariable String id) {
-        product.deleteProduct(id);
+    @PutMapping("")
+    public ResponseObject updateProduct(@RequestParam String id,
+                                        @RequestBody Product product,
+                                        @RequestBody List<Title> titles) {
+        Product updatedProduct = this.product.updateProduct(id, product, titles);
+        return new ResponseObject("OK", "Update product successfully", updatedProduct);
+    }
+
+    @DeleteMapping("")
+    public ResponseObject deleteProduct(@RequestParam String id) {
+        this.product.deleteProduct(id);
+        return new ResponseObject("OK", "Delete product successfully", null);
     }
 }

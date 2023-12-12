@@ -8,6 +8,7 @@ import pm02.cameraWebSeller.data_access.repository.ProductRepository;
 import pm02.cameraWebSeller.data_access.repository.TitleRepository;
 import pm02.cameraWebSeller.service.interfaces.AdminProductService;
 
+import java.util.Collections;
 import java.util.List;
 
 @Service("adminProductService")
@@ -36,8 +37,18 @@ public class AdminProductServiceImp implements AdminProductService {
 
     @Override
     public Product createProduct(Product product, List<Title> titles) {
-        product.setTitles(titles);
-        return productRepository.save(product);
+        product.setOrderProducts(Collections.emptyList());
+        Product savedProduct = productRepository.save(product);
+
+        if (titles != null && !titles.isEmpty()) {
+            for (Title title : titles) {
+                title.setProduct(savedProduct);
+                titleRepository.save(title);
+            }
+            savedProduct.setTitles(titles);
+        }
+
+        return savedProduct;
     }
 
     @Override

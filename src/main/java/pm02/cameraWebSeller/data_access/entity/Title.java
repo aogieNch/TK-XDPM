@@ -1,5 +1,6 @@
 package pm02.cameraWebSeller.data_access.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -25,6 +26,7 @@ public class Title {
     private String description;
 
     @ManyToOne
+    @JsonBackReference("product-titles")
     @JoinColumn(name = "product_id")
     private Product product;
 }

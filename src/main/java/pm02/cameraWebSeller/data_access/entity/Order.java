@@ -1,5 +1,6 @@
 package pm02.cameraWebSeller.data_access.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,8 +30,9 @@ public class Order {
     private String phone;
     private String gmail;
     private Date dateOrder = new Date();
-    private String status;
+    private String status = "Pending";
 
+    @JsonManagedReference("order-products")
     @OneToMany(mappedBy="order")
     private List<OrderProduct> orderProducts;
 }
