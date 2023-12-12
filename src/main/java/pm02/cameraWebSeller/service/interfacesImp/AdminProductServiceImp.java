@@ -56,16 +56,21 @@ public class AdminProductServiceImp implements AdminProductService {
         Product existingProduct = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product not found with id = " + id));
 
-        if (updatedProduct.getName() != null)
+        if (updatedProduct.getName() != null) {
             existingProduct.setName(updatedProduct.getName());
-        if (updatedProduct.getPrice() != 0)
+        }
+        if (updatedProduct.getPrice() != 0) {
             existingProduct.setPrice(updatedProduct.getPrice());
-        if (updatedProduct.getCompany() != null)
+        }
+        if (updatedProduct.getCompany() != null) {
             existingProduct.setCompany(updatedProduct.getCompany());
-        if (updatedProduct.getColor() != null)
+        }
+        if (updatedProduct.getColor() != null) {
             existingProduct.setColor(updatedProduct.getColor());
-        if (updatedProduct.getWarranty() != 0)
+        }
+        if (updatedProduct.getWarranty() != 0) {
             existingProduct.setWarranty(updatedProduct.getWarranty());
+        }
 
         if (updatedTitles != null && !updatedTitles.isEmpty()) {
             existingProduct.getTitles().clear();

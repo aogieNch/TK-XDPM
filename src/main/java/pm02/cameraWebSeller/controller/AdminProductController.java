@@ -43,9 +43,8 @@ public class AdminProductController {
 
     @PutMapping("")
     public ResponseObject updateProduct(@RequestParam String id,
-                                        @RequestBody Product product,
-                                        @RequestBody List<Title> titles) {
-        Product updatedProduct = this.product.updateProduct(id, product, titles);
+                                        @RequestBody ProductRequest request) {
+        Product updatedProduct = this.product.updateProduct(id, request.getProduct(), request.getTitles());
         return new ResponseObject("OK", "Update product successfully", updatedProduct);
     }
 
