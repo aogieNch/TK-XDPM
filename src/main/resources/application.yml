@@ -1,8 +1,8 @@
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/camera_web_seller
-    username: root
-    password: aogie2003
+    username: sa
+    password: 123456789
   jpa:
     properties:
       hibernate:
