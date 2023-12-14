@@ -25,13 +25,13 @@ public class OrderProduct {
     @Column(name = "order_id", insertable = false, updatable = false)
     private String orderId;
 
+    @JsonBackReference("product-order-products")
     @ManyToOne
-    @JsonBackReference("product-order-prdoducts")
     @JoinColumn(name = "product_id")
     private Product product;
 
-    @ManyToOne
     @JsonBackReference("order-products")
+    @ManyToOne
     @JoinColumn(name = "order_id")
     private Order order;
 

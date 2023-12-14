@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pm02.cameraWebSeller.data_access.entity.Product;
-import pm02.cameraWebSeller.data_access.entity.Title;
 import pm02.cameraWebSeller.reponse.ResponseObject;
 import pm02.cameraWebSeller.service.interfaces.AdminProductService;
 
@@ -41,14 +40,14 @@ public class AdminProductController {
         );
     }
 
-    @PutMapping("")
+    @PutMapping("/")
     public ResponseObject updateProduct(@RequestParam String id,
                                         @RequestBody ProductRequest request) {
         Product updatedProduct = this.product.updateProduct(id, request.getProduct(), request.getTitles());
         return new ResponseObject("OK", "Update product successfully", updatedProduct);
     }
 
-    @DeleteMapping("")
+    @DeleteMapping("/")
     public ResponseObject deleteProduct(@RequestParam String id) {
         this.product.deleteProduct(id);
         return new ResponseObject("OK", "Delete product successfully", null);

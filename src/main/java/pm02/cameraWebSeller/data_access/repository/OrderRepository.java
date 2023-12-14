@@ -11,6 +11,6 @@ import java.util.List;
 public interface OrderRepository extends JpaRepository<Order, String> {
     @Query("select o from Order o where o.id = :id and o.status = 'Pending'")
     Order findPendingOrderById(String id);
-    @Query("select o from Order o where o.status = 'Pending'")
+    @Query("select o from Order o where o.status = 'Pending' or o.status = 'Confirmed'")
     List<Order> findAllPendingOrder();
 }

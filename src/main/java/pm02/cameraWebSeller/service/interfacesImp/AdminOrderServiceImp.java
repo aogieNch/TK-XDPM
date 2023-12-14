@@ -31,13 +31,13 @@ public class AdminOrderServiceImp implements AdminOrderService {
             throw new RuntimeException("Order not found with id = " + id);
         return order;
     }
-
     @Override
     public void confirmOrder(String id) {
         Order order = orderRepository.findPendingOrderById(id);
         if (order == null)
             throw new RuntimeException("Order not found with id = " + id);
         order.setStatus("Confirmed");
+        orderRepository.save(order);
     }
 
     @Override
@@ -46,5 +46,6 @@ public class AdminOrderServiceImp implements AdminOrderService {
         if (order == null)
             throw new RuntimeException("Order not found with id = " + id);
         order.setStatus("Canceled");
+        orderRepository.save(order);
     }
 }
