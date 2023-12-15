@@ -9,4 +9,12 @@ spring:
         id:
           new_generator_mappings: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: create
+
+server:
+  servlet:
+    session:
+#      timeout: 30
+      cookie:
+        http-only: true
+        secure: false

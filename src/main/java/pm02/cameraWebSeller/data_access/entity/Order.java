@@ -9,6 +9,7 @@ import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import pm02.cameraWebSeller.id_generator.CustomId;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +34,14 @@ public class Order {
     private String status = "Pending";
 
     @JsonManagedReference("order-products")
-    @OneToMany(mappedBy="order")
+    @OneToMany(mappedBy="order", fetch = FetchType.EAGER)
     private List<OrderProduct> orderProducts;
+
+    public List<OrderProduct> getOrderProducts() {
+        if (orderProducts == null) {
+            orderProducts = new ArrayList<>();
+        }
+        return orderProducts;
+    }
 }
 

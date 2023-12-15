@@ -14,7 +14,6 @@ public class CameraWebSellerApplication {
 	@Bean
 	public ApplicationRunner dataLoader(TestDataSeeder testDataSeeder) {
 		return args -> {
-			// Call the method to insert test data
 			testDataSeeder.insertTestData();
 		};
 	}
