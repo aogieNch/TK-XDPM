@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pm02.cameraWebSeller.data_access.entity.Product;
-import pm02.cameraWebSeller.data_access.entity.Title;
 import pm02.cameraWebSeller.reponse.ResponseObject;
 import pm02.cameraWebSeller.service.interfaces.AdminProductService;
 
