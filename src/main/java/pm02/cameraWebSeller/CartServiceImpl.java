@@ -81,4 +81,10 @@ public class CartServiceImpl implements CartService {
             session.setAttribute(SECRET_SESSION_KEY, cart);
         }
     }
+    @Override
+    public void removeFromCart(String productId, HttpSession session) {
+        Cart cart = getCart(session);
+        cart.removeProduct(productId);
+        session.setAttribute(SECRET_SESSION_KEY, cart);
+    }
 }

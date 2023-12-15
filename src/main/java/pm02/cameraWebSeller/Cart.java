@@ -20,16 +20,18 @@ import java.util.Map;
 public class Cart {
     private List<Product> products;
     private int quantity;
-//    private double totalPrice;
-//
-//    public double getTotalPrice() {
-//        totalPrice = 0;
-//        for (Product product : products) {
-//            totalPrice += product.getPrice();
-//        }
-//        return totalPrice;
-//    }
+    private double totalPrice;
     private Map<String, Integer> productQuantity;
+
+    public double getTotalPrice() {
+        double totalPrice = 0;
+        if (products != null) {
+            for (Product product : products) {
+                totalPrice += product.getPrice() * productQuantity.get(product.getId());
+            }
+        }
+        return totalPrice;
+    }
 
     public Map<String, Integer> getProductQuantity() {
         return productQuantity;
@@ -56,6 +58,21 @@ public class Cart {
         } else {
             productQuantity.put(productId, quantity);
             products.add(product);
+        }
+    }
+    public void removeProduct(String productId) {
+        if (products != null && productQuantity != null) {
+            Product productToRemove = null;
+            for (Product product : products) {
+                if (product.getId().equals(productId)) {
+                    productToRemove = product;
+                    break;
+                }
+            }
+            if (productToRemove != null) {
+                products.remove(productToRemove);
+                productQuantity.remove(productId);
+            }
         }
     }
 }

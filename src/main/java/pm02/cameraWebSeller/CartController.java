@@ -45,5 +45,14 @@ public class CartController {
             return ResponseEntity.ok(new ResponseObject("ERROR", e.getMessage(), null));
         }
     }
+    @DeleteMapping("/remove")
+    public ResponseEntity<ResponseObject> removeFromCart(@RequestParam String id, HttpSession session) {
+        try{
+            cartService.removeFromCart(id, session);
+            return ResponseEntity.ok(new ResponseObject("OK", "Item(s) removed from the cart", id));
+        } catch (Exception e){
+            return ResponseEntity.ok(new ResponseObject("ERROR", e.getMessage(), null));
+        }
+    }
 }
 
