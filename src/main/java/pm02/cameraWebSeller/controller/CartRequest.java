@@ -1,4 +1,4 @@
-package pm02.cameraWebSeller;
+package pm02.cameraWebSeller.controller;
 
 import lombok.Getter;
 import lombok.Setter;

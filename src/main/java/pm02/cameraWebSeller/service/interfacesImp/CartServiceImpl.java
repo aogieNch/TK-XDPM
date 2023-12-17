@@ -1,9 +1,11 @@
-package pm02.cameraWebSeller;
+package pm02.cameraWebSeller.service.interfacesImp;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import pm02.cameraWebSeller.data_access.entity.Cart;
 import pm02.cameraWebSeller.data_access.entity.Order;
 import pm02.cameraWebSeller.data_access.entity.Product;
+import pm02.cameraWebSeller.service.interfaces.CartService;
 import pm02.cameraWebSeller.service.interfaces.OrderService;
 import pm02.cameraWebSeller.service.interfaces.ProductService;
 

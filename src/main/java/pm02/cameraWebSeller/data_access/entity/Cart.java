@@ -1,4 +1,4 @@
-package pm02.cameraWebSeller;
+package pm02.cameraWebSeller.data_access.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

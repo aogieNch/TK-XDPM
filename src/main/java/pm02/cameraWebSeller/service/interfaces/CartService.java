@@ -1,6 +1,7 @@
-package pm02.cameraWebSeller;
+package pm02.cameraWebSeller.service.interfaces;
 
 import jakarta.servlet.http.HttpSession;
+import pm02.cameraWebSeller.data_access.entity.Cart;
 
 public interface CartService {
     void addToCart(String productId, int quantity, HttpSession session);
