@@ -54,5 +54,14 @@ public class CartController {
             return ResponseEntity.ok(new ResponseObject("ERROR", e.getMessage(), null));
         }
     }
+    @PostMapping("/decrease")
+    public ResponseEntity<ResponseObject> decreaseQuantity(@RequestParam String id, HttpSession session) {
+        try{
+            cartService.decreaseQuantity(id, session);
+            return ResponseEntity.ok(new ResponseObject("OK", "Item(s) removed from the cart", id));
+        } catch (Exception e){
+            return ResponseEntity.ok(new ResponseObject("ERROR", e.getMessage(), null));
+        }
+    }
 }
 

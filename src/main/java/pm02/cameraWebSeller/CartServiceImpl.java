@@ -47,6 +47,12 @@ public class CartServiceImpl implements CartService {
         }
     }
     @Override
+    public void decreaseQuantity(String productId, HttpSession session) {
+        Cart cart = getCart(session);
+        cart.decreaseProductQuantity(productId);
+        session.setAttribute(SECRET_SESSION_KEY, cart);
+    }
+    @Override
     public Cart viewCart(HttpSession session) {
         Cart cart = getCart(session);
 

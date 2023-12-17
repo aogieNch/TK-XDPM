@@ -75,4 +75,15 @@ public class Cart {
             }
         }
     }
+    public void decreaseProductQuantity(String productId) {
+        if (products != null && productQuantity != null) {
+            int currentQuantity = productQuantity.getOrDefault(productId, 0);
+            if (currentQuantity > 1) {
+                productQuantity.put(productId, currentQuantity - 1);
+            } else {
+                removeProduct(productId); // Remove the product if the quantity is 1 or less
+            }
+        }
+    }
+
 }
