@@ -61,6 +61,7 @@ public class TestDataSeeder {
         product.setName(name);
         product.setPrice(price);
         product.setCompany(company);
+        product.setUrlImage("https://drive.google.com/file/d/14mwOtAhLL2n_V-jKPDobfR79DHWXpvnI/view?usp=drive_link");
         return productRepository.save(product);
     }
     private Product createProduct2(String name, float price, String company) {
@@ -69,6 +70,7 @@ public class TestDataSeeder {
         product.setName(name);
         product.setPrice(price);
         product.setCompany(company);
+        product.setUrlImage("https://drive.google.com/file/d/18_49pC1RyAA94zPxpgEkIPGBLAeFbnrp/view?usp=drive_link");
         return productRepository.save(product);
     }
 

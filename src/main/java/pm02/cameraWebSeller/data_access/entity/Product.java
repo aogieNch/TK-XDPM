@@ -30,6 +30,7 @@ public class Product {
     private String company;
     private String color;
     private int warranty;
+    private String urlImage;
     private Date dateCreate = new Date();
 
     @OneToMany(mappedBy = "product")
