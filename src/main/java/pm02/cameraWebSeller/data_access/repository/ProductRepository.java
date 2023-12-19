@@ -14,6 +14,5 @@ import java.util.Optional;
 public interface ProductRepository extends JpaRepository<Product, String> {
     @Query("SELECT p FROM Product p WHERE LOWER(p.name) LIKE LOWER(CONCAT('%', :keyword, '%'))")
     List<Product> findProductsByKeyword(@Param("keyword") String keyword);
-
     Optional<Product> findById(String id);
 }
