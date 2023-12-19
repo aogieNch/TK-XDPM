@@ -32,13 +32,30 @@ public class TestDataSeeder {
     }
 
     public void insertTestData() {
-        Product product1 = createProduct("Sample Product 1", 99.99f, "ABC Company");
-        Product product2 = createProduct2("Sample Product 2", 149.99f, "XYZ Corporation");
+        Product product1 = createProduct("MÁY ẢNH FUJIFILM X100F", 18000000f, "FUJIFILM");
+        Product product2 = createProduct2("MÁY ẢNH FUJIFILM X-S20", 	31990000, "FUJIFILM");
+        Product product4 = createProduct2("MÁY ẢNH CANON EOS 5D MARK IV",42990000, "CANON");
+        Product product5 = createProduct2("MÁY ẢNH CANON EOS 1D X MARK III",186000000, "CANON");
+        Product product6 = createProduct2("MÁY ẢNH NIKON D5",122000000, "NIKON");
+        Product product7 = createProduct2("MÁY ẢNH NIKON Z5",33900000, "NIKON");
 
-        createTitle("Title for Product 1", product1);
-        createTitle("Another Title for Product 1", product1);
+        createTitle("Compact Power", "FUJIFILM X100F Camera",product1);
+        createTitle("Capturing Moments", "FUJIFILM X100F Photography Excellence", product1);
 
-        createTitle("Title for Product 2", product2);
+        createTitle("Innovative Performance", "FUJIFILM X-S20 Camera", product2);
+        createTitle("Next-Level Imaging", "FUJIFILM X-S20 Photography Mastery", product2);
+
+        createTitle("Professional Precision", "CANON EOS 5D MARK IV Camera", product4);
+        createTitle("Creative Visionary","CANON EOS 5D MARK IV Photography Wonder", product4);
+
+        createTitle("Elite Capture","CANON EOS 1D X MARK III Camera", product5);
+        createTitle("Unparalleled Performance","CANON EOS 1D X MARK III Photography", product5);
+
+        createTitle("Ultimate Precision","NIKON D5 Camera", product6);
+        createTitle("Masterful Shots","NIKON D5 Photography Brilliance", product6);
+
+        createTitle("Versatile Vision","NIKON Z5 Camera", product7);
+        createTitle("Creative Freedom","NIKON Z5 Photography Marvel", product7);
 
         Order order1 = createOrder();
 
@@ -74,9 +91,10 @@ public class TestDataSeeder {
         return productRepository.save(product);
     }
 
-    private Title createTitle(String name, Product product) {
+    private Title createTitle(String name, String des, Product product) {
         Title title = new Title();
         title.setName(name);
+        title.setDescription(des);
         title.setProduct(product);
         return titleRepository.save(title);
     }
